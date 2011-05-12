@@ -100,6 +100,8 @@ module Brcobranca
           9
         when 7
           10
+        when 5
+          10
         when 4
           7
         when 6
@@ -114,7 +116,11 @@ module Brcobranca
       # @return [String] 1 caracteres numéricos.
       # @see BancoBrasil#numero_documento
       def nosso_numero_dv
-        "#{self.convenio}#{self.numero_documento}".modulo11_9to2_10_como_x
+        if self.carteira.to_i==11   # carteira 11 convênio com 5 dígitos
+          "#{self.numero_documento}".modulo11_9to2_10_como_x
+        else
+          "#{self.convenio}#{self.numero_documento}".modulo11_9to2_10_como_x
+        end
       end
 
       # Nosso número para exibir no boleto.
@@ -122,7 +128,11 @@ module Brcobranca
       # @example
       #  boleto.nosso_numero_boleto #=> "12387989000004042-4"
       def nosso_numero_boleto
-        "#{self.convenio}#{self.numero_documento}-#{self.nosso_numero_dv}"
+        if self.carteira.to_i==11   # carteira 11 convênio com 5 dígitos
+          "#{self.numero_documento}-#{self.nosso_numero_dv}"
+        else
+          "#{self.convenio}#{self.numero_documento}-#{self.nosso_numero_dv}"
+        end
       end
 
       # Agência + conta corrente do cliente para exibir no boleto.
@@ -151,6 +161,8 @@ module Brcobranca
             raise "Só é permitido emitir boletos com nosso número de 17 dígitos com carteiras 16 ou 18. Sua carteira atual é #{self.carteira}" unless (["16","18"].include?(self.carteira))
             "#{self.convenio}#{self.numero_documento}21"
           end
+        when 5 # Convenio de 5 dígitos
+          "#{self.convenio}#{self.numero_documento}#{self.agencia}#{self.conta_corrente}#{self.carteira}"
         when 4 # Nosso Número de 7 dígitos com Convenio de 4 dígitos e sem numero_documento
           "#{self.convenio}#{self.numero_documento}#{self.agencia}#{self.conta_corrente}#{self.carteira}"
         end
@@ -159,3 +171,4 @@ module Brcobranca
     end
   end
 end
+
