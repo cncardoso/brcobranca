@@ -2,6 +2,21 @@
 
 * http://rubygems.org/gems/brcobranca
 
+== Alteração neste fork
+Alterado para compatibilizar com o Ruby 1.9.
+
+Foi incluída uma opção de configuração para setar o external_encoding do rghost
+(que também foi ajustado no fork http://github.com/cncardoso/rghost).
+
+Caso esteja acontecendo o seguinte erro: UndefinedConversionError - ... from ASCII-8BIT to UTF-8
+Criar um arquivo brcobranca.rb no projeto que usa o brcobranca em config/initializer com a configuração
+
+<pre><code>
+Brcobranca.setup do |config|
+  config.external_encoding = 'ascii-8bit'
+end
+</code></pre>
+
 == EXEMPLO
 
 * http://www.boletorails.com.br
@@ -18,6 +33,7 @@ Gem para emissão de bloquetos de cobrança para bancos brasileiros
 
 * Banco do Brasil
   * TODAS AS CARTEIRAS PRESENTES NA DOCUMENTAÇÃO
+  * e a carteira 11 convênio com 5 dígitos
 
 * Banco Itaú
   * TODAS AS CARTEIRAS PRESENTES NA DOCUMENTAÇÃO
@@ -77,3 +93,4 @@ BSD
 De brasileiro para brasileiros.
 
 Copyleft 2009 Kivanio Barbosa
+
