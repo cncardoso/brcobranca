@@ -11,11 +11,9 @@ Foi incluída uma opção de configuração para setar o external_encoding do rg
 Caso esteja acontecendo o seguinte erro: UndefinedConversionError - ... from ASCII-8BIT to UTF-8
 Criar um arquivo brcobranca.rb no projeto que usa o brcobranca em config/initializer com a configuração
 
-<pre><code>
-Brcobranca.setup do |config|
-  config.external_encoding = 'ascii-8bit'
-end
-</code></pre>
+  Brcobranca.setup do |config|
+    config.external_encoding = 'ascii-8bit'
+  end
 
 == EXEMPLO
 
