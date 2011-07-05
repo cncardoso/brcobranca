@@ -162,7 +162,7 @@ module Brcobranca
             "#{self.convenio}#{self.numero_documento}21"
           end
         when 5 # Convenio de 5 dígitos
-          "#{self.convenio}#{self.numero_documento}#{self.agencia}#{self.conta_corrente}#{self.carteira}"
+          "#{self.numero_documento}#{self.agencia}#{self.conta_corrente}#{self.carteira}"
         when 4 # Nosso Número de 7 dígitos com Convenio de 4 dígitos e sem numero_documento
           "#{self.convenio}#{self.numero_documento}#{self.agencia}#{self.conta_corrente}#{self.carteira}"
         end
